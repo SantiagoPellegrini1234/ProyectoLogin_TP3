@@ -1,0 +1,229 @@
+/* =====================================================================
+   ARCHIVO: login_app/assets/css/estilos.css
+   Hoja de estilos única y responsive (CSS3 puro: flexbox + grid).
+   Enfoque "mobile first": los estilos base sirven para móviles y las
+   media queries amplían el diseño en pantallas mayores.
+   ===================================================================== */
+
+/* ---- Variables de diseño (paleta y medidas reutilizables) ---- */
+:root {
+    --color-fondo-1: #1e3a8a;       /* Azul oscuro del degradado */
+    --color-fondo-2: #3b82f6;       /* Azul claro del degradado */
+    --color-tarjeta: #ffffff;       /* Fondo de la tarjeta */
+    --color-texto: #1f2937;         /* Texto principal */
+    --color-suave: #6b7280;         /* Texto secundario */
+    --color-borde: #d1d5db;         /* Borde de inputs */
+    --color-primario: #2563eb;      /* Botón y enlaces */
+    --color-primario-oscuro: #1d4ed8;
+    --color-error-fondo: #fee2e2;
+    --color-error-texto: #991b1b;
+    --color-exito-fondo: #dcfce7;
+    --color-exito-texto: #166534;
+    --radio: 10px;                  /* Redondeo de esquinas */
+}
+
+/* ---- Reinicio básico ---- */
+/* border-box: el padding y el borde se incluyen en el ancho declarado. */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+/* ---- Base del documento ---- */
+body {
+    margin: 0;
+    min-height: 100vh;
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+    color: var(--color-texto);
+    background: linear-gradient(135deg, var(--color-fondo-1), var(--color-fondo-2));
+}
+
+/* ---- Contenedor: centra la tarjeta vertical y horizontalmente (flexbox) ---- */
+.contenedor {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+}
+
+/* ---- Tarjeta del formulario ---- */
+.tarjeta {
+    width: 100%;
+    max-width: 440px;               /* Nunca se estira demasiado en escritorio */
+    background: var(--color-tarjeta);
+    border-radius: 16px;
+    padding: 1.75rem 1.5rem;
+    box-shadow: 0 20px 45px rgba(0, 0, 0, 0.25);
+}
+
+.tarjeta.centrado {
+    text-align: center;
+}
+
+h1 {
+    margin: 0 0 0.25rem;
+    font-size: 1.6rem;
+}
+
+.subtitulo {
+    margin: 0 0 1.25rem;
+    color: var(--color-suave);
+}
+
+/* ---- Campos de formulario ---- */
+.campo {
+    display: flex;
+    flex-direction: column;         /* Etiqueta arriba, input abajo */
+    margin-bottom: 1rem;
+}
+
+label {
+    margin-bottom: 0.35rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+input {
+    width: 100%;
+    padding: 0.75rem 0.85rem;
+    font-size: 1rem;                /* 16px evita el zoom automático en iOS */
+    border: 1px solid var(--color-borde);
+    border-radius: var(--radio);
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+input:focus {
+    outline: none;
+    border-color: var(--color-primario);
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.25);
+}
+
+/* Resalta en rojo solo los campos inválidos que el usuario ya tocó. */
+input.invalido {
+    border-color: #dc2626;
+}
+
+/* ---- Fila de dos columnas (nombre / apellido) ---- */
+.fila {
+    display: grid;
+    grid-template-columns: 1fr;     /* Una columna en móviles */
+    gap: 0 1rem;
+}
+
+/* ---- Botones ---- */
+.boton {
+    width: 100%;
+    padding: 0.85rem;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #ffffff;
+    background: var(--color-primario);
+    border: none;
+    border-radius: var(--radio);
+    cursor: pointer;
+    transition: background 0.2s, transform 0.1s;
+}
+
+.boton:hover {
+    background: var(--color-primario-oscuro);
+}
+
+.boton:active {
+    transform: scale(0.98);
+}
+
+/* Deshabilitado mientras se espera la respuesta del servidor. */
+.boton:disabled {
+    opacity: 0.6;
+    cursor: wait;
+}
+
+.boton.secundario {
+    background: #374151;
+}
+
+.boton.secundario:hover {
+    background: #1f2937;
+}
+
+/* ---- Mensajes de error / éxito ---- */
+.mensaje {
+    display: none;                  /* Oculto hasta que haya contenido */
+    margin-bottom: 1rem;
+    padding: 0.75rem 1rem;
+    border-radius: var(--radio);
+    font-size: 0.92rem;
+}
+
+.mensaje.visible {
+    display: block;
+}
+
+.mensaje.error {
+    background: var(--color-error-fondo);
+    color: var(--color-error-texto);
+}
+
+.mensaje.exito {
+    background: var(--color-exito-fondo);
+    color: var(--color-exito-texto);
+}
+
+/* ---- Enlaces ---- */
+.enlace-pie {
+    margin: 1.25rem 0 0;
+    text-align: center;
+    font-size: 0.92rem;
+    color: var(--color-suave);
+}
+
+a {
+    color: var(--color-primario);
+    font-weight: 600;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* ---- Insignia de la pantalla de bienvenida ---- */
+.insignia {
+    width: 72px;
+    height: 72px;
+    margin: 0 auto 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    color: #ffffff;
+    background: #16a34a;
+    border-radius: 50%;
+}
+
+/* =====================================================================
+   RESPONSIVE: ajustes para pantallas de 600px o más (tablets y escritorio)
+   ===================================================================== */
+@media (min-width: 600px) {
+    .tarjeta {
+        padding: 2.25rem 2.25rem;
+    }
+
+    /* Nombre y apellido pasan a dos columnas iguales. */
+    .fila {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    h1 {
+        font-size: 1.85rem;
+    }
+}
+
+/* Respeta a quienes pidieron menos animaciones en su sistema. */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        transition: none !important;
+    }
+}
