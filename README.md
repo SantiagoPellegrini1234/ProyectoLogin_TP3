@@ -1,3 +1,7 @@
+Nombre del alumno: Santiago Pellegrini
+Año: 2026
+Materia: Analisis de Sistemas
+
 # Login App — PHP 8 + MySQL (nativo)
 
 Sistema de autenticación con **registro, login y pantalla de bienvenida**.
